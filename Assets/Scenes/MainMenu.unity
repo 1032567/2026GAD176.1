@@ -174,8 +174,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
+  m_ChildAlignment: 4
+  m_Spacing: 1
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -357,6 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd839fba93fbb8469a2193b1297dc73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuPanel: {fileID: 101757504}
+  buttonPrefab: {fileID: 8185527560067399955, guid: c8ed15c7ae90f1749bcc0bd2554f53ca, type: 3}
+  buttonContainer: {fileID: 101757505}
 --- !u!1 &1331123380
 GameObject:
   m_ObjectHideFlags: 0

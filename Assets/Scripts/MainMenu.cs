@@ -5,17 +5,14 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject menuPanel;
     public GameObject buttonPrefab;
     public Transform buttonContainer;
-    public string gameplaySceneName;
-
-    private SceneManager sceneManager;
 
     private List<MenuButtonData> menuButtons;
 
     void Start()
     {
-        sceneManager = SceneManager.Instance;
         menuButtons = new List<MenuButtonData>
         {
             new MenuButtonData { label = "Play", onClick = PlayGame },
@@ -38,6 +35,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        Debug.Log("Go to Game Scene");
     }
 
     public void OpenOptions()
