@@ -1,7 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     private bool isPaused = false;
     private List<MenuButtonData> menuButtons;
+    public string mainSceneName = "MainMenu";
 
     void Start()
     {
@@ -19,6 +21,7 @@ public class PauseMenu : MonoBehaviour
         {
             new MenuButtonData { label = "Resume", onClick = ResumeGame },
             new MenuButtonData { label = "Options",  onClick = OpenOptions },
+            new MenuButtonData { label = "Main Menu", onClick = BackToMenu},
             new MenuButtonData { label = "Quit", onClick = QuitGame },
         };
 
@@ -44,7 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             TogglePause();
         }
@@ -68,6 +71,10 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Open the options menu");
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(mainSceneName);
+    }
 
     public void QuitGame()
     {
@@ -79,3 +86,4 @@ public class PauseMenu : MonoBehaviour
 #endif
     }
 }
+

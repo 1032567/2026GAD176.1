@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject menuPanel;
     public GameObject buttonPrefab;
     public Transform buttonContainer;
+    public string gameplaySceneName = "GameScene";
 
     private List<MenuButtonData> menuButtons;
 
@@ -28,14 +29,14 @@ public class MainMenu : MonoBehaviour
         foreach (MenuButtonData data in menuButtons)
         {
             GameObject newButton = Instantiate(buttonPrefab, buttonContainer);
-            newButton.GetComponentInChildren<Text>().text = data.label;
+            newButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = data.label;
             newButton.GetComponent<Button>().onClick.AddListener(data.onClick);
         }
     }
 
     public void PlayGame()
     {
-        Debug.Log("Go to Game Scene");
+        SceneManager.LoadScene(gameplaySceneName);
     }
 
     public void OpenOptions()
