@@ -1,48 +1,24 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MenuBase
 {
     public GameObject pausePanel;
-    public GameObject buttonPrefab;   // drag MenuButtonPrefab here
-    public Transform buttonContainer; // drag PausePanel here (parent for spawned buttons)
+    public string mainMenuSceneName = "MainMenu";
 
     private bool isPaused = false;
-    private List<MenuButtonData> menuButtons;
-    public string mainSceneName = "MainMenu";
 
-    void Start()
+    protected override List<MenuButtonData> GetButtonData()
     {
-        // Define our menu here — the "list of buttons"
-        menuButtons = new List<MenuButtonData>
+        return new List<MenuButtonData>
         {
             new MenuButtonData { label = "Resume", onClick = ResumeGame },
-            new MenuButtonData { label = "Options",  onClick = OpenOptions },
-            new MenuButtonData { label = "Main Menu", onClick = BackToMenu},
-            new MenuButtonData { label = "Quit", onClick = QuitGame },
+            new MenuButtonData { label = "Options", onClick = OpenOptions }, // CHANGED label + method name
+            new MenuButtonData { label = "Main Menu", onClick = ReturnToMainMenu },
+            new MenuButtonData { label = "Quit", onClick = QuitGame }
         };
-
-        BuildMenu();
-    }
-
-    void BuildMenu()
-    {
-        foreach (MenuButtonData data in menuButtons)
-        {
-            // Create a copy of the prefab, parented to buttonContainer
-            GameObject newButton = Instantiate(buttonPrefab, buttonContainer);
-
-            // Set its visible text
-            newButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = data.label;
-            // If you're using TextMeshPro instead, use this line instead of the one above:
-            // newButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = data.label;
-
-            // Hook up the click action
-            newButton.GetComponent<Button>().onClick.AddListener(data.onClick);
-        }
     }
 
     void Update()
@@ -67,13 +43,15 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void OpenOptions()
+    public void OpenOptions() // RENAMED from OpenSettings
     {
-        Debug.Log("Open the options menu");
+        OptionsMenu.Instance.ShowOptions();
     }
-    public void BackToMenu()
+
+    public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(mainSceneName);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 
     public void QuitGame()
@@ -86,4 +64,3 @@ public class PauseMenu : MonoBehaviour
 #endif
     }
 }
-

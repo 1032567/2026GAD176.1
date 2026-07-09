@@ -1,37 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MenuBase
 {
-    public GameObject menuPanel;
-    public GameObject buttonPrefab;
-    public Transform buttonContainer;
     public string gameplaySceneName = "GameScene";
 
-    private List<MenuButtonData> menuButtons;
-
-    void Start()
+    protected override List<MenuButtonData> GetButtonData()
     {
-        menuButtons = new List<MenuButtonData>
+        return new List<MenuButtonData>
         {
             new MenuButtonData { label = "Play", onClick = PlayGame },
             new MenuButtonData { label = "Options", onClick = OpenOptions },
             new MenuButtonData { label = "Exit", onClick = ExitGame }
         };
-
-        BuildMenu();
-    }
-
-    void BuildMenu()
-    {
-        foreach (MenuButtonData data in menuButtons)
-        {
-            GameObject newButton = Instantiate(buttonPrefab, buttonContainer);
-            newButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = data.label;
-            newButton.GetComponent<Button>().onClick.AddListener(data.onClick);
-        }
     }
 
     public void PlayGame()
@@ -41,7 +23,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        Debug.Log("Options button clicked - build this menu later");
+        Debug.Log("OpenOptions called, Instance is: " + OptionsMenu.Instance);
+        OptionsMenu.Instance.ShowOptions();
     }
 
     public void ExitGame()
@@ -53,3 +36,4 @@ public class MainMenu : MonoBehaviour
 #endif
     }
 }
+

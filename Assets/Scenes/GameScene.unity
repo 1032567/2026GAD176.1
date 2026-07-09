@@ -534,10 +534,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d862635cc70a14db5d9efbfedc1b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 1412459187}
   buttonPrefab: {fileID: 111805993013643938, guid: af7e44691ef5c8b4781e4bdb359daa0c, type: 3}
   buttonContainer: {fileID: 1412459188}
-  mainSceneName: MainMenu
+  pausePanel: {fileID: 1412459187}
+  mainMenuSceneName: MainMenu
 --- !u!4 &1316351941
 Transform:
   m_ObjectHideFlags: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.03773582, g: 0.036905155, b: 0.036905155, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
