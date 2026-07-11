@@ -13,27 +13,38 @@ public abstract class ProgressionBase
 
 public class LinearProgression : ProgressionBase
 {
-    float[] thresholds;
+    int                 maxLevel;
+    float[]             thresholds;
+    OverloadProgression overload;
 
-    public LinearProgression(float[] thresholds)
+    public LinearProgression(float[] thresholds, int maxLevel, OverloadProgression overload)
     {
         this.thresholds = thresholds;
+        this.maxLevel   = maxLevel;
+        this.overload   = overload;
         level           = 1;
         target          = thresholds[0]; // set first target on startup
     }
 
     public override void GainXP(float amount)
     {
+        // redirect to overload if already at cap
+        if (IsAtCap()) { overload.GainXP(amount); return; }
+
         currentXP += amount;
 
-        // loop handles multiple level-ups from one XP gain
-        while (currentXP >= target)
+        // loop handles multiple level-ups from one XP gain, cap checked every iteration
+        while (currentXP >= target && !IsAtCap())
         {
             currentXP -= target;
             LevelUp();
         }
+
+        if (IsAtCap() && currentXP > 0)
+            HandOffLeftover();
     }
 
+    public bool  IsAtCap()      => level >= maxLevel;
     public int   GetLevel()     => level;
     public float GetCurrentXP() => currentXP;
     public float GetTarget()    => target;
@@ -45,22 +56,76 @@ public class LinearProgression : ProgressionBase
         target = i < thresholds.Length ? thresholds[i] : thresholds[thresholds.Length - 1];
         Debug.Log("Linear level up: " + level);
     }
+
+    void HandOffLeftover()
+    {
+        // leftover XP after hitting the cap passes to overload
+        overload.GainXP(currentXP);
+        currentXP = 0f;
+    }
+}
+
+// handles XP past the cap - no ceiling, target grows each level
+public class OverloadProgression : ProgressionBase
+{
+    int   overloadLevel;
+    float growthRate;
+
+    public OverloadProgression(float startTarget, float growthRate)
+    {
+        this.growthRate = growthRate;
+        target          = startTarget; // set first target on startup
+        overloadLevel   = 0;
+    }
+
+    public override void GainXP(float amount)
+    {
+        currentXP += amount;
+        Debug.Log("XP added to overload pool");
+
+        // loop handles multiple level-ups from one XP gain
+        while (currentXP >= target)
+        {
+            currentXP -= target;
+            LevelUp();
+        }
+    }
+
+    public int   GetOverloadLevel() => overloadLevel;
+    public float GetCurrentXP()     => currentXP;
+    public float GetTarget()        => target;
+
+    protected override void LevelUp()
+    {
+        overloadLevel++;
+        target *= growthRate; // multiply target to make each level harder
+        Debug.Log("Overload level up: " + overloadLevel);
+    }
 }
 
 public class ProgressionSystem : MonoBehaviour
 {
-    public float[] xpList = { 100, 200, 350, 500, 700 }; // Inspector: one value per level
+    public float[] xpList           = { 100, 200, 350, 500, 700 }; // Inspector: one value per level
+    public int     maxLevel         = 5;   // Inspector: linear level cap
+    public float   overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
 
-    LinearProgression linear;
+    LinearProgression   linear;
+    OverloadProgression overload;
 
     void Awake()
     {
-        // build pool at startup
-        linear = new LinearProgression(xpList);
+        // build both pools at startup
+        float overloadStart = xpList[xpList.Length - 1];
+        overload = new OverloadProgression(overloadStart, overloadGrowthRate);
+        linear   = new LinearProgression(xpList, maxLevel, overload);
     }
 
     public void  GainXP(float amount) => linear.GainXP(amount);
     public int   GetLevel()           => linear.GetLevel();
     public float GetCurrentXP()       => linear.GetCurrentXP();
     public float GetTarget()          => linear.GetTarget();
+    public bool  IsAtCap()            => linear.IsAtCap();
+    public int   GetOverloadLevel()   => overload.GetOverloadLevel();
+    public float GetOverloadXP()      => overload.GetCurrentXP();
+    public float GetOverloadTarget()  => overload.GetTarget();
 }
