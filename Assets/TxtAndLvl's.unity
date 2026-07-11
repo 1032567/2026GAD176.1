@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -81, y: -49}
+  m_AnchoredPosition: {x: -107.7, y: -84.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &282113699
@@ -691,7 +691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -64, y: 77}
+  m_AnchoredPosition: {x: -108.10002, y: 59.699993}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516496549
@@ -828,7 +828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67, y: 25}
+  m_AnchoredPosition: {x: -107.900024, y: -15.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &583352849
@@ -1208,12 +1208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd429c3c6e1c3234eb36b1bb3b6063e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProgressionSystem
-  xpList:
-  - 100
-  - 200
-  - 350
-  - 500
-  - 700
+  thresholds: {fileID: 11400000, guid: ce6195ad277903647bcf5c55f610d59e, type: 2}
+  maxLevel: 5
+  overloadGrowthRate: 1.5
+  onLevelUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1933487317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,6 +1223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1933487319}
+  - component: {fileID: 1933487320}
   m_Layer: 0
   m_Name: DisplayManager
   m_TagString: Untagged
@@ -1245,6 +1246,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1933487320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933487317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02dec7598bd898b499ce6c1ca6594afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XPDisplay
+  progression: {fileID: 1724803504}
+  levelText: {fileID: 516496549}
+  xpText: {fileID: 583352849}
+  overloadText: {fileID: 282113699}
 --- !u!1 &2043844870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1274,7 @@ GameObject:
   - component: {fileID: 2043844875}
   - component: {fileID: 2043844874}
   - component: {fileID: 2043844873}
+  - component: {fileID: 2043844876}
   m_Layer: 5
   m_Name: GainXPButton
   m_TagString: Untagged
@@ -1328,7 +1346,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2043844876}
         m_TargetAssemblyTypeName: XPButton, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -1378,6 +1396,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043844870}
   m_CullTransparentMesh: 1
+--- !u!114 &2043844876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043844870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4417addfa768387459a21e0c9cc761bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XPButton
+  progression: {fileID: 1724803504}
+  xpPerClick: 25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
