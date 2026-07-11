@@ -1173,7 +1173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724803503}
-  - component: {fileID: 1724803502}
+  - component: {fileID: 1724803504}
   m_Layer: 0
   m_Name: ProgressionManager
   m_TagString: Untagged
@@ -1181,29 +1181,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1724803502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724803501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad6baefbefc21c94eb059375cced9a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProgressionSystem
-  xpList:
-  - 100
-  - 200
-  - 350
-  - 500
-  - 700
-  maxLevel: 5
-  overloadGrowthRate: 1.5
-  onLevelUp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &1724803503
 Transform:
   m_ObjectHideFlags: 0
@@ -1219,6 +1196,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1724803504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724803501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd429c3c6e1c3234eb36b1bb3b6063e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressionSystem
+  xpList:
+  - 100
+  - 200
+  - 350
+  - 500
+  - 700
 --- !u!1 &1933487317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1223,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1933487319}
-  - component: {fileID: 1933487318}
   m_Layer: 0
   m_Name: DisplayManager
   m_TagString: Untagged
@@ -1236,22 +1230,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1933487318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933487317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c118bfb7faaca949923dbfc182add3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::XPDisplay
-  progression: {fileID: 1724803502}
-  levelText: {fileID: 516496549}
-  xpText: {fileID: 583352849}
-  overloadText: {fileID: 282113699}
 --- !u!4 &1933487319
 Transform:
   m_ObjectHideFlags: 0
@@ -1279,7 +1257,6 @@ GameObject:
   - component: {fileID: 2043844875}
   - component: {fileID: 2043844874}
   - component: {fileID: 2043844873}
-  - component: {fileID: 2043844872}
   m_Layer: 5
   m_Name: GainXPButton
   m_TagString: Untagged
@@ -1307,20 +1284,6 @@ RectTransform:
   m_AnchoredPosition: {x: -318, y: 17}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2043844872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043844870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026cc8be5002f434e83ff331b094f192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::XPButton
-  progression: {fileID: 1724803502}
-  xpPerClick: 25
 --- !u!114 &2043844873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,7 +1328,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2043844872}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: XPButton, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
