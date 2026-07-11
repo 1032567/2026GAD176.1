@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // shared foundation - both progression types inherit from this
 public abstract class ProgressionBase
@@ -6,6 +7,9 @@ public abstract class ProgressionBase
     protected float currentXP;
     protected float target;
     protected int   level;
+
+    // listeners subscribe here - progression never calls them directly
+    public UnityEvent onLevelUp = new UnityEvent();
 
     public abstract void    GainXP(float amount);
     protected abstract void LevelUp();
@@ -55,6 +59,7 @@ public class LinearProgression : ProgressionBase
         int i  = level - 1;
         target = i < thresholds.Length ? thresholds[i] : thresholds[thresholds.Length - 1];
         Debug.Log("Linear level up: " + level);
+        onLevelUp?.Invoke(); // fire event so any listener can react
     }
 
     void HandOffLeftover()
@@ -100,26 +105,35 @@ public class OverloadProgression : ProgressionBase
         overloadLevel++;
         target *= growthRate; // multiply target to make each level harder
         Debug.Log("Overload level up: " + overloadLevel);
+        onLevelUp?.Invoke(); // fire event so any listener can react
     }
 }
 
 public class ProgressionSystem : MonoBehaviour
 {
-    // thresholds moved to a ScriptableObject - drag the asset in via Inspector
     public XPThresholds thresholds;
     public int          maxLevel          = 5;    // Inspector: linear level cap
     public float        overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
+
+    public UnityEvent onLevelUp;
 
     LinearProgression   linear;
     OverloadProgression overload;
 
     void Awake()
     {
-        // read from the asset then build both pools
+        // Awake so pools exist before XPDisplay.Start() subscribes
         float[] xpList      = thresholds.xpList;
         float overloadStart = xpList[xpList.Length - 1];
         overload = new OverloadProgression(overloadStart, overloadGrowthRate);
         linear   = new LinearProgression(xpList, maxLevel, overload);
+    }
+
+    void Start()
+    {
+        // route both pool events through the single public event
+        linear.onLevelUp.AddListener(()  => onLevelUp?.Invoke());
+        overload.onLevelUp.AddListener(() => onLevelUp?.Invoke());
     }
 
     public void  GainXP(float amount) => linear.GainXP(amount);
