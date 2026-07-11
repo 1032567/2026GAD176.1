@@ -111,9 +111,10 @@ public class OverloadProgression : ProgressionBase
 
 public class ProgressionSystem : MonoBehaviour
 {
-    public XPThresholds thresholds;
-    public int          maxLevel          = 5;    // Inspector: linear level cap
-    public float        overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
+    // SerializeField keeps these visible in the Inspector but blocks other scripts from changing them
+    [SerializeField] private XPThresholds thresholds;
+    [SerializeField] private int          maxLevel          = 5;    // Inspector: linear level cap
+    [SerializeField] private float        overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
 
     public UnityEvent onLevelUp;
 
