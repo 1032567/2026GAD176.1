@@ -1,0 +1,102 @@
+Progression System Pseudo
+
+
+
+XP Thresholds:
+
+
+data file only - holds no logic
+
+    holds a list of xp values, one per linear level
+    default values: 100, 200, 350, 500, 700
+
+    create this as an asset in the project window
+    drag the asset into the ProgressionManager Inspector slot
+    the progression system reads from it on startup
+
+
+
+Progression System:
+
+
+on awake:
+    load the xp threshold list from the asset
+    set the overload starting target to the last value in that list
+    build the overload pool using the starting target and growth rate
+    build the linear pool using the threshold list, the level cap, and the overload pool
+
+on start:
+    when the linear pool fires a level-up, fire the public level-up event
+    when the overload pool fires a level-up, fire the public level-up event
+
+when gain xp is called:
+    pass the amount to the linear pool
+
+linear pool gains xp:
+    if already at cap
+        send all xp straight to the overload pool
+        stop
+
+    add xp to the linear pool
+
+    while the pool holds enough xp to level up and is not at cap
+        subtract the target from the pool
+        add 1 to level
+        set target to the next value in the threshold list
+        fire the level-up event
+
+    if now at cap and xp remains
+        send leftover xp to the overload pool
+
+overload pool gains xp:
+    add xp to the overload pool
+    write to the debug log
+
+    while the pool holds enough xp to level up
+        subtract the target from the pool
+        add 1 to overload level
+        multiply the target by the growth rate
+        fire the level-up event
+
+when a level-up event fires:
+    any listener reacts
+    the progression code does not know who is listening
+
+
+
+XP Button:
+
+
+on start:
+    no setup needed - waits for input
+
+when the button is pressed:
+    if no progression system is set, do nothing
+    send the xpPerClick amount to the progression system
+
+
+
+XP Display:
+
+
+on start:
+    if no progression system is set, do nothing
+    subscribe to the progression system's level-up event
+    run a refresh straight away
+
+every frame:
+    if a progression system is set, run a refresh
+
+refresh:
+    if level text exists
+        write  Level: X
+    if xp text exists
+        write  currentXP / target XP
+    if overload text exists
+        if the linear pool is at cap
+            write  Overload X  |  overloadXP / overloadTarget XP
+        if not at cap
+            leave the text blank
+
+when the level-up event fires:
+    write a line to the debug log
