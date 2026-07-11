@@ -105,16 +105,18 @@ public class OverloadProgression : ProgressionBase
 
 public class ProgressionSystem : MonoBehaviour
 {
-    public float[] xpList           = { 100, 200, 350, 500, 700 }; // Inspector: one value per level
-    public int     maxLevel         = 5;   // Inspector: linear level cap
-    public float   overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
+    // thresholds moved to a ScriptableObject - drag the asset in via Inspector
+    public XPThresholds thresholds;
+    public int          maxLevel          = 5;    // Inspector: linear level cap
+    public float        overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
 
     LinearProgression   linear;
     OverloadProgression overload;
 
     void Awake()
     {
-        // build both pools at startup
+        // read from the asset then build both pools
+        float[] xpList      = thresholds.xpList;
         float overloadStart = xpList[xpList.Length - 1];
         overload = new OverloadProgression(overloadStart, overloadGrowthRate);
         linear   = new LinearProgression(xpList, maxLevel, overload);
