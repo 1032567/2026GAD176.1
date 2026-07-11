@@ -3,11 +3,11 @@ using TMPro;
 
 public class XPDisplay : MonoBehaviour
 {
-    [Header("── DRAG IN: ProgressionManager from the Hierarchy ─────────────")]
+    [Header("── ProgressionManager from the Hierarchy ─────────────")]
     [Tooltip("The object that has the ProgressionSystem script on it")]
     public ProgressionSystem progression;
 
-    [Header("── DRAG IN: TMP Text objects from your Canvas ──────────────────")]
+    [Header("── TMP Text objects from Canvas ──────────────────")]
     [Tooltip("Displays  Level: X")]
     public TMP_Text levelText;
     [Tooltip("Displays  currentXP / targetXP")]
@@ -31,10 +31,10 @@ public class XPDisplay : MonoBehaviour
 
     void OnLevelUp()
     {
-        Debug.Log("UI received level-up event");
+        Debug.Log("UI received level-up event"); // for testing and debugging
     }
 
-    void Refresh()
+    void Refresh() // update the text fields with the latest values
     {
         if (levelText != null)
             levelText.text = "Level: " + progression.GetLevel();

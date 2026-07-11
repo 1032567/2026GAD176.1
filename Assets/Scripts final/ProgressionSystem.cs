@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// shared foundation - both progression types inherit from this
+// shared foundation, both progression types inherit from this
 public abstract class ProgressionBase
 {
     protected float currentXP;
     protected float target;
     protected int   level;
 
-    // listeners subscribe here - progression never calls them directly
+    // listeners subscribe here, progression never calls them directly
     public UnityEvent onLevelUp = new UnityEvent();
 
     public abstract void    GainXP(float amount);
@@ -21,8 +21,9 @@ public class LinearProgression : ProgressionBase
     float[]             thresholds;
     OverloadProgression overload;
 
-    public LinearProgression(float[] thresholds, int maxLevel, OverloadProgression overload)
+    public LinearProgression(float[] thresholds, int maxLevel, OverloadProgression overload) 
     {
+        // store the values passed in from the ProgressionSystem
         this.thresholds = thresholds;
         this.maxLevel   = maxLevel;
         this.overload   = overload;
@@ -47,7 +48,7 @@ public class LinearProgression : ProgressionBase
         if (IsAtCap() && currentXP > 0)
             HandOffLeftover();
     }
-
+// public getters for other scripts to call
     public bool  IsAtCap()      => level >= maxLevel;
     public int   GetLevel()     => level;
     public float GetCurrentXP() => currentXP;
@@ -79,7 +80,7 @@ public class OverloadProgression : ProgressionBase
     public OverloadProgression(float startTarget, float growthRate)
     {
         this.growthRate = growthRate;
-        target          = startTarget; // set first target on startup
+        target          = startTarget; // sets first target on startup
         overloadLevel   = 0;
     }
 
@@ -112,7 +113,7 @@ public class OverloadProgression : ProgressionBase
 public class ProgressionSystem : MonoBehaviour
 {
     // SerializeField keeps these visible in the Inspector but blocks other scripts from changing them
-    [SerializeField] private XPThresholds thresholds;
+    [SerializeField] private XPThresholds thresholds; 
     [SerializeField] private int          maxLevel          = 5;    // Inspector: linear level cap
     [SerializeField] private float        overloadGrowthRate = 1.5f; // Inspector: overload difficulty multiplier
 
@@ -137,6 +138,7 @@ public class ProgressionSystem : MonoBehaviour
         overload.onLevelUp.AddListener(() => onLevelUp?.Invoke());
     }
 
+// public methods for other scripts to call
     public void  GainXP(float amount) => linear.GainXP(amount);
     public int   GetLevel()           => linear.GetLevel();
     public float GetCurrentXP()       => linear.GetCurrentXP();
