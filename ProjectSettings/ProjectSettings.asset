@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
+<<<<<<< HEAD
   productGUID: 5895e53637786a04f8ddfc4761e74363
+=======
+  productGUID: a5d8d74ea52b5824e823fa3ed3aba654
+>>>>>>> feature/Progression
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +17,11 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
+<<<<<<< HEAD
   productName: 26GAD176.1
+=======
+  productName: Gad176.1
+>>>>>>> feature/Progression
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -134,6 +142,10 @@ PlayerSettings:
   switchNVNMaxPublicSamplerIDCount: 0
   switchMaxWorkerMultiple: 8
   switchNVNGraphicsFirmwareMemory: 32
+<<<<<<< HEAD
+=======
+  switchGraphicsJobsSyncAfterKick: 1
+>>>>>>> feature/Progression
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 1
@@ -175,9 +187,16 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
+<<<<<<< HEAD
   AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
+=======
+  AndroidMinSdkVersion: 25
+  AndroidTargetSdkVersion: 0
+  AndroidPreferredInstallLocation: 1
+  AndroidPreferredDataLocation: 1
+>>>>>>> feature/Progression
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -192,11 +211,19 @@ PlayerSettings:
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSSimulatorArchitecture: 0
+<<<<<<< HEAD
   iOSTargetOSVersionString: 13.0
   tvOSSdkVersion: 0
   tvOSSimulatorArchitecture: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 13.0
+=======
+  iOSTargetOSVersionString: 15.0
+  tvOSSdkVersion: 0
+  tvOSSimulatorArchitecture: 0
+  tvOSRequireExtendedGameController: 0
+  tvOSTargetOSVersionString: 15.0
+>>>>>>> feature/Progression
   VisionOSSdkVersion: 0
   VisionOSTargetOSVersionString: 1.0
   uIPrerenderedIcon: 0
@@ -255,7 +282,11 @@ PlayerSettings:
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
   clonedFromGUID: 3c72c65a16f0acb438eed22b8b16c24a
+<<<<<<< HEAD
   templatePackageId: com.unity.template.urp-blank@17.0.12
+=======
+  templatePackageId: com.unity.template.urp-blank@17.0.14
+>>>>>>> feature/Progression
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
@@ -266,6 +297,10 @@ PlayerSettings:
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
+<<<<<<< HEAD
+=======
+  AndroidAllowedArchitectures: -13
+>>>>>>> feature/Progression
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -568,7 +603,11 @@ PlayerSettings:
   locationUsageDescription: 
   microphoneUsageDescription: 
   bluetoothUsageDescription: 
+<<<<<<< HEAD
   macOSTargetOSVersion: 11.0
+=======
+  macOSTargetOSVersion: 12.0
+>>>>>>> feature/Progression
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -816,12 +855,19 @@ PlayerSettings:
   webGLMemoryLinearGrowthStep: 16
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
+<<<<<<< HEAD
   webGLEnableWebGPU: 0
+=======
+>>>>>>> feature/Progression
   webGLPowerPreference: 2
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
+<<<<<<< HEAD
+=======
+  webEnableSubmoduleStrippingCompatibility: 0
+>>>>>>> feature/Progression
   scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -843,14 +889,22 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
+<<<<<<< HEAD
   metroPackageName: 26GAD176.1
+=======
+  metroPackageName: Gad176.1
+>>>>>>> feature/Progression
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
+<<<<<<< HEAD
   metroApplicationDescription: 26GAD176.1
+=======
+  metroApplicationDescription: Gad176.1
+>>>>>>> feature/Progression
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -921,11 +975,19 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
+<<<<<<< HEAD
   cloudProjectId: 375dd9bd-a608-45c0-8587-4e32544221d7
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: 26GAD176.1
   organizationId: unity_1032567
+=======
+  cloudProjectId: f925978d-926e-4272-9935-553cbef5f4bd
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: Gad176.1
+  organizationId: primalarcaneum
+>>>>>>> feature/Progression
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
@@ -934,3 +996,9 @@ PlayerSettings:
   insecureHttpOption: 0
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
+<<<<<<< HEAD
+=======
+  androidVulkanDeviceFilterListAsset: {fileID: 0}
+  d3d12DeviceFilterListAsset: {fileID: 0}
+  allowedHttpConnections: 3
+>>>>>>> feature/Progression

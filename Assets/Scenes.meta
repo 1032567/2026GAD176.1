@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a8a06769e6dd910419e9c49de29faa6f
+=======
+guid: 9e59062058c7e24409666bb03513b10f
+>>>>>>> feature/Progression
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
