@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 3af94c039aed09d4abeed15f77ab985a
+  productGUID: 5895e53637786a04f8ddfc4761e74363
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: GAD176.1
+  productName: 26GAD176.1
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -843,14 +843,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: GAD176.1
+  metroPackageName: 26GAD176.1
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: GAD176.1
+  metroApplicationDescription: 26GAD176.1
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -921,10 +921,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 5d779c3c-eff7-42f0-88b5-7080330cf5da
+  cloudProjectId: 375dd9bd-a608-45c0-8587-4e32544221d7
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: GAD176.1 2026-06-12_11-24-17
+  projectName: 26GAD176.1
   organizationId: unity_1032567
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
